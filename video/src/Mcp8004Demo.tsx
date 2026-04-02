@@ -11,13 +11,13 @@ import { theme } from './theme'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-const fadeIn = (frame: number, start: number, duration = 12) =>
+const fadeIn = (frame: number, start: number, duration = 8) =>
   interpolate(frame, [start, start + duration], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   })
 
-const slideUp = (frame: number, start: number, distance = 24, duration = 16) =>
+const slideUp = (frame: number, start: number, distance = 18, duration = 10) =>
   interpolate(frame, [start, start + duration], [distance, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -66,14 +66,14 @@ const SceneProblem: React.FC = () => {
   const frame = useCurrentFrame()
 
   const lines = [
-    { text: 'OPENAI_API_KEY=sk-proj-a8f2...3kQp', delay: 10, danger: true },
-    { text: 'ANTHROPIC_API_KEY=sk-ant-api03-X...', delay: 25, danger: true },
-    { text: 'WALLET_PRIVATE_KEY=0xac0974bec3...', delay: 40, danger: true },
-    { text: 'DATABASE_URL=postgres://prod:p@ss...', delay: 55, danger: true },
+    { text: 'OPENAI_API_KEY=sk-proj-a8f2...3kQp', delay: 8, danger: true },
+    { text: 'ANTHROPIC_API_KEY=sk-ant-api03-X...', delay: 18, danger: true },
+    { text: 'WALLET_PRIVATE_KEY=0xac0974bec3...', delay: 28, danger: true },
+    { text: 'DATABASE_URL=postgres://prod:p@ss...', delay: 38, danger: true },
   ]
 
-  const warningOpacity = fadeIn(frame, 110)
-  const warningY = slideUp(frame, 110)
+  const warningOpacity = fadeIn(frame, 65)
+  const warningY = slideUp(frame, 65)
 
   return (
     <AbsoluteFill style={{ background: theme.bg, justifyContent: 'center', alignItems: 'center', padding: '0 160px' }}>
@@ -151,7 +151,7 @@ const SceneInsight: React.FC = () => {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
 
-  const scale = spring({ fps, frame: frame - 10, config: { damping: 80, stiffness: 120 } })
+  const scale = spring({ fps, frame: frame - 6, config: { damping: 80, stiffness: 140 } })
 
   return (
     <AbsoluteFill style={{ background: theme.bg, justifyContent: 'center', alignItems: 'center', padding: '0 160px' }}>
@@ -162,17 +162,17 @@ const SceneInsight: React.FC = () => {
         <div style={{
           borderLeft: `4px solid ${theme.amber}`,
           paddingLeft: 40,
-          opacity: fadeIn(frame, 8),
+          opacity: fadeIn(frame, 5),
           transform: `scale(${scale})`,
           transformOrigin: 'left center',
-          marginBottom: 60,
+          marginBottom: 48,
         }}>
           <div style={{
             fontFamily: theme.fontSans,
-            fontSize: 48,
+            fontSize: 64,
             fontWeight: 700,
             color: theme.textPrimary,
-            lineHeight: 1.25,
+            lineHeight: 1.2,
           }}>
             The wallet is already<br />
             a credential.
@@ -181,9 +181,9 @@ const SceneInsight: React.FC = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {[
-            { icon: '→', text: 'Address is the identity', delay: 40 },
-            { icon: '→', text: 'Signature is the proof', delay: 60 },
-            { icon: '→', text: 'ERC-8004 is the registry', delay: 80 },
+            { icon: '→', text: 'Address is the identity', delay: 25 },
+            { icon: '→', text: 'Signature is the proof', delay: 40 },
+            { icon: '→', text: 'ERC-8004 is the registry', delay: 55 },
           ].map(({ icon, text, delay }) => (
             <div key={text} style={{
               display: 'flex',
@@ -210,13 +210,13 @@ const SceneAuthFlow: React.FC = () => {
 
   const steps = [
     { label: '1  GET /challenge', detail: 'nonce + timestamp', color: theme.textSecondary, delay: 0 },
-    { label: '2  sign(message)', detail: 'EIP-191 wallet signature', color: theme.amber, delay: 35 },
-    { label: '3  POST /auth', detail: 'address + signature', color: theme.textSecondary, delay: 70 },
-    { label: '4  ERC-8004 lookup', detail: 'Base Sepolia — 0x8004A818...', color: theme.green, delay: 105 },
-    { label: '5  JWT issued', detail: 'scopes: ["tools:all"]', color: theme.amber, delay: 145 },
+    { label: '2  sign(message)', detail: 'EIP-191 wallet signature', color: theme.amber, delay: 22 },
+    { label: '3  POST /auth', detail: 'address + signature', color: theme.textSecondary, delay: 44 },
+    { label: '4  ERC-8004 lookup', detail: 'Base Sepolia — 0x8004A818...', color: theme.green, delay: 66 },
+    { label: '5  JWT issued', detail: 'scopes: ["tools:all"]', color: theme.amber, delay: 90 },
   ]
 
-  const txOpacity = fadeIn(frame, 175)
+  const txOpacity = fadeIn(frame, 118)
 
   return (
     <AbsoluteFill style={{ background: theme.bg, justifyContent: 'center', alignItems: 'center', padding: '0 160px' }}>
@@ -289,15 +289,15 @@ const SceneShip: React.FC = () => {
   const lines = [
     { text: "import { authMiddleware } from 'mcp8004'", delay: 0, color: theme.textSecondary },
     { text: '', delay: 0, color: theme.textMuted },
-    { text: 'server.use(authMiddleware({', delay: 20, color: theme.textSecondary },
-    { text: '  chainId: 84532,', delay: 35, color: theme.green },
-    { text: '  reputationThreshold: 0,', delay: 50, color: theme.green },
-    { text: '  allowX402Fallback: true,', delay: 65, color: theme.green },
-    { text: '}))', delay: 80, color: theme.textSecondary },
+    { text: 'server.use(authMiddleware({', delay: 12, color: theme.textSecondary },
+    { text: '  chainId: 84532,', delay: 22, color: theme.green },
+    { text: '  reputationThreshold: 0,', delay: 32, color: theme.green },
+    { text: '  allowX402Fallback: true,', delay: 42, color: theme.green },
+    { text: '}))', delay: 52, color: theme.textSecondary },
   ]
 
-  const taglineOpacity = fadeIn(frame, 120)
-  const taglineY = slideUp(frame, 120)
+  const taglineOpacity = fadeIn(frame, 75)
+  const taglineY = slideUp(frame, 75)
 
   return (
     <AbsoluteFill style={{ background: theme.bg, justifyContent: 'center', alignItems: 'center', padding: '0 160px' }}>
@@ -380,16 +380,16 @@ const SceneShip: React.FC = () => {
 
 export const Mcp8004Demo: React.FC = () => (
   <AbsoluteFill style={{ background: theme.bg }}>
-    <Sequence from={0} durationInFrames={210}>
+    <Sequence from={0} durationInFrames={150}>
       <SceneProblem />
     </Sequence>
-    <Sequence from={210} durationInFrames={210}>
+    <Sequence from={150} durationInFrames={120}>
       <SceneInsight />
     </Sequence>
-    <Sequence from={420} durationInFrames={270}>
+    <Sequence from={270} durationInFrames={180}>
       <SceneAuthFlow />
     </Sequence>
-    <Sequence from={690} durationInFrames={210}>
+    <Sequence from={450} durationInFrames={150}>
       <SceneShip />
     </Sequence>
   </AbsoluteFill>
