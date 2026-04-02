@@ -10,11 +10,11 @@
 
 import { privateKeyToAccount } from 'viem/accounts'
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = `http://localhost:${process.env.PORT ?? '3000'}`
 
-// Test wallet — NEVER use a real wallet with funds here
-const TEST_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
-const account = privateKeyToAccount(TEST_PRIVATE_KEY)
+// Use CASE_WALLET_PRIVATE_KEY if set, otherwise fall back to Hardhat test key
+const PRIVATE_KEY = (process.env.CASE_WALLET_PRIVATE_KEY ?? '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80') as `0x${string}`
+const account = privateKeyToAccount(PRIVATE_KEY)
 
 console.log(`\nTest agent address: ${account.address}\n`)
 
