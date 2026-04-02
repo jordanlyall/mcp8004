@@ -1,0 +1,15 @@
+export const theme = {
+  bg: '#0a0a0a',
+  surface: '#111111',
+  border: '#1e1e1e',
+  amber: '#f59e0b',
+  amberDim: '#f59e0b33',
+  green: '#a3e635',
+  red: '#ef4444',
+  textPrimary: '#ffffff',
+  textSecondary: '#e5e5e5',
+  textMuted: '#888888',
+  textDim: '#555555',
+  fontMono: "'JetBrains Mono', 'Fira Code', monospace",
+  fontSans: "'Inter', -apple-system, sans-serif",
+}
