@@ -1,0 +1,33 @@
+{
+  "name": "@mcp8004/gate",
+  "version": "0.1.0",
+  "description": "Drop-in MCP auth middleware using ERC-8004 onchain agent identity",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["mcp", "erc-8004", "auth", "onchain", "agents", "web3", "base"],
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0",
+    "viem": "^2.23.0"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  },
+  "peerDependencies": {
+    "viem": "^2.0.0"
+  }
+}
