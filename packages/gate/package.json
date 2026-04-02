@@ -1,5 +1,5 @@
 {
-  "name": "@mcp8004/gate",
+  "name": "mcp8004",
   "version": "0.1.0",
   "description": "Drop-in MCP auth middleware using ERC-8004 onchain agent identity",
   "type": "module",
